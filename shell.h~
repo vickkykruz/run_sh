@@ -40,20 +40,4 @@ int _cd(data_list *);
 void modify_directory(data_list *, char *, char *);
 /** STR_TOKEN.C FULE **/
 void solo_sh(data_list *);
-/** FREE.C FILE **/
-void free_alias(alias_list *);
-void free_arr_ptr(char **);
-void free_list(path_l *);
-/** PRINT.C FILE **/
-size_t print_list(const path_list *);
-void print_path_dir(void);
-integer print_alias(data_list *, char *);
-integer print_alias_list(data_list *);
-/** EXIT.C FILE **/
-int _exit(data_list *);
-/* ALIASE.C FILE *** */
-alias_list *add_alias(alias_l **, char *, char *);
-int _alias(data_list *);
-int set_alias(data_list *, char *);
-void validate_alias(data_list *);
 #endif

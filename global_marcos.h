@@ -13,14 +13,17 @@ typedef long long_number;
 */
 typedef struct data_into
 {
-    char *arg;
-    char *arg_line;
-    int count;
-    char *cmd;
-    int desc;
-    char **env;
-    char **segment;
-    char **list;
+	char **arv;
+	char *arg_line;
+	char **env;
+	char **arry;
+	int builtin;
+	int intact;
+	path_l *path;
+	alias_list *list_alias;
+	int status;
+	pid_t pid;
+	ssize_t len;
 } data_list;
 
 #define PLACEHOLDRS \
@@ -31,6 +34,10 @@ typedef struct data_into
  * BUFF_SIZE - This BUFF_SIZE reprsent the inital mememory to be allocated
 */
 #define BUFF_SIZE 1024
+#define NEW_LINE '\n'
+#define DELIME_LIST " \t\n\a\r"
+
+extern string *environ;
 
 /**
  * 
@@ -39,8 +46,22 @@ typedef struct buitin
 {
     string cmd;
     integer (*fun)(data_list *ptr);
-} builin_fun;
+} builtin_fun;
 
+/***/
+typedef struct path
+{
+	string str_path;
+	struct path *next;
+} path_list;
+
+/***/
+typedef struct alias
+{
+	string name;
+	string val;
+	struct alias *next;
+} alias_list;
 
 #define BUITIN_FUNC {\
 	{"cd", _cd},\

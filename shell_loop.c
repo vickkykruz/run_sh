@@ -1,4 +1,48 @@
 #include "shell.h"
+char *is_shell(data_list *list_t)
+{
+	char *dir;
+	integer(*builtin_cmd_fun(char **))(data_list *list_t);
+
+	list_t->arry = get_cmd(list_t, list_t->arg_line, list_t->len);
+	/* To eveloute this content passed */
+	if (!list_t->arry)
+	{
+		free(list_t->arry);
+		return (NULL);
+	}
+	validate_alias(list_t);
+	expand_variable(list_t);
+	builtin_cmd_fun = get_cmd_fun(list_t);
+
+	/* If the argument passed has a builtin func */
+	if (builtin_cmd_fun != NULL)
+	{
+		list_t->status = builtin_cmd_fun(list_t);
+		if (list_t->arry != NULL)
+			free_arr_ptr(list_t->arry);
+		list_t->builtin = 1;
+		return (NULL);
+	}
+
+	/* else we check if the argument is a system program */
+	dir = find_path(list_t->path, list_t->arry[0]);
+
+	/* If failed */
+	if (!dir)
+	{
+		write(STDERR_FILENO, list_t->arv[0], _strlen(list_t->arv[0]));
+		write(STDERR_FILENO, ": ", 2);
+		write(STDERR_FILENO, list_t->arry[0], _strlen(list_t->arry[0]));
+		write(STDERR_FILENO, ": No such file or directory\n", 28);
+		list_t->status = 2;
+		free_arr_ptr(list_t->arry);
+		free(dir);
+		return (NULL);
+	}
+
+	return (dir);
+}
 /**
  * shell_loop - This is a function that loop the program after an exection
  * has been made.
@@ -12,25 +56,24 @@ void shell_loop(data_list *list_t)
 {
   string pth;
   
-  if (shell->arv[1])
+  if (list_t->arv[1])
     exit (98);
   else if (!isatty(STDIN_FILENO))
-    non_interact(shell);
+     solo_shell(list_t);
   else
     {
       for (; ;)
 	{
-	  write(STDOUT_FILENO, "($) ", 4);
+	  print("($) ");
 	  fflush(stdout);
-	  path = check_shell(shell);
-	  if (!path)
+	  pth = is_shell(list_t);
+	  if (!pth)
 	    continue;
-	  shell->pid = fork();
-	  if (shell->pid == 0)
+	  list_t->pid = fork();
+	  if (list_t->pid == 0)
 	    {
-	      shell->status = execve(path, shell->arr, shel
-				     l->_environ);
-	      if (shell->status == -1)
+	      list_t->status = execve(path, list_t->arry, list_t->env);
+	      if (list_t->status == -1)
 		{
 		  write(STDERR_FILENO, shell->av[0], my
 			_strlen(shell->av[0]));
@@ -39,18 +82,18 @@ void shell_loop(data_list *list_t)
 			y_strlen(shell->arr[0]));
 		  write(STDERR_FILENO, ": Permission de
 nied\n", 20);
-		  free(path);
-		  shell->status = 13;
-		  my_exit(shell);
+		  free(pth);
+		  list_t->status = 13;
+		  call_exit(shell);
 		}
 	    }
 	  else
 	    {
-	      wait(&shell->status);
-	      shell->status = WEXITSTATUS(shell->status);
+	      wait(&list_t->status);
+	      list_t->status = WEXITSTATUS(list_t->status);
 	    }
-	  free_arr2(shell->arr);
-	  free(path);
+	  free_arr2(list_t->arry);
+	  free(pth);
 	}
     }
 }
