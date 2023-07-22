@@ -34,7 +34,7 @@ integer print(string str)
  * 
  * Return: This function return an int (0) as sucess and (1) fauilure
 */
-integer print_alias_list(data_list *list_tr)
+integer print_alias_list(data_list *list_t)
 {
 	alias_list *tmp;
 	int len1, len2;

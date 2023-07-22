@@ -2,7 +2,7 @@
 char *is_shell(data_list *list_t)
 {
 	char *dir;
-	integer(*builtin_cmd_fun(char **))(data_list *list_t);
+	integer(*builtin_cmd_fun)(data_list *list_t);
 
 	list_t->arry = get_cmd(list_t, list_t->arg_line, list_t->len);
 	/* To eveloute this content passed */
@@ -13,7 +13,7 @@ char *is_shell(data_list *list_t)
 	}
 	validate_alias(list_t);
 	expand_variable(list_t);
-	builtin_cmd_fun = get_cmd_fun(list_t);
+	builtin_cmd_fun = get_cmd_fun(list_t->arry);
 
 	/* If the argument passed has a builtin func */
 	if (builtin_cmd_fun != NULL)

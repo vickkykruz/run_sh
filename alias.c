@@ -2,10 +2,10 @@
 /***/
 alias_list *add_alias(alias_list **list, char *str, char *val)
 {
-	alias_list *tmp = list, *node;
+	alias_list *tmp = *list, *node;
 	char *s;
 
-	if (val[0] = 39)
+	if (val[0] == 39)
 		s = _strdup(val);
 	else
 	{
@@ -26,7 +26,7 @@ alias_list *add_alias(alias_list **list, char *str, char *val)
 		}
 		tmp = tmp->next;
 	}
-	tmp = list;
+	tmp = *list;
 	node = malloc(sizeof(alias_list));
 	if (node == NULL)
 		return (NULL);
@@ -51,7 +51,7 @@ int set_alias(data_list *list_t, char *ar)
 	char *str, *val, *na;
 
 	str = _strdup(ar);
-	na = _strtoken(str, '=');
+	na = _strtoken(str, "=");
 	val = _strtoken(NULL, "");
 
 	add_alias(&list_t->list_alias, na, val);

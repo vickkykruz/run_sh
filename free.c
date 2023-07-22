@@ -32,9 +32,9 @@ void free_arr_ptr(char **ptr)
 	}
 }
 /***/
-void free_list(path_l *list)
+void free_list(path_list *list)
 {
-	path_l *tmp = list, *prv;
+	path_list *tmp = list, *prv;
 
 	if (list)
 	{

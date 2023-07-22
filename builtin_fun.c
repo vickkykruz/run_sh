@@ -6,10 +6,10 @@ int (*get_cmd_fun(char **arg))(data_list *)
 
 	if (arg != NULL)
 	{
-		for (i = 0; list_t[i].fun != NULL; i++)
+		for (i = 0; cmd_builtin[i].fun != NULL; i++)
 		{
-			if (_strcmp(list_t[i].cmd, arg[0]) == 0)
-				return (list_t[i].fun);
+			if (_strcmp(cmd_builtin[i].cmd, arg[0]) == 0)
+				return (cmd_builtin[i].fun);
 		}
 	}
 

@@ -8,17 +8,17 @@ char *_getenv(data_list *list_t, char *str)
 	for (i = 0; list_t->env[i]; i++)
 	{
 		j = 0, chk = 0;
-		while (list_t->env[i][j] != '=' && str != '\0')
+		while (list_t->env[i][j] != '=' && str[j] != '\0')
 		{
-			if (list_t->env[i][j] != name[j])
+			if (list_t->env[i][j] != str[j])
 				chk = 1;
 			j++;
 		}
-		if (chk == 0 && list_t->env[i][j] = '=')
+		if (chk == 0 && list_t->env[i][j] == '=')
 		{
 			for (k = j + 1, n = 0; list_t->env[i][k]; k++, n++)
 				;
-			val = malloc(sizeof(char) * (l + 1));
+			val = malloc(sizeof(char) * (n + 1));
 
 			for (k = j + 1, n = 0; list_t->env[i][k]; n++, k++)
 				val[n] = list_t->env[i][k];

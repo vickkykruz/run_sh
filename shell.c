@@ -20,7 +20,7 @@ integer main(integer argc, string argv[], string env[])
   list_t.status = 0;
   list_t.builtin = 0;
   list_t.arry = NULL;
-  list.list_alias = NULL;
+  list_t.list_alias = NULL;
   (void) env;
   
   list_t.arv = malloc(sizeof(char *) * (argc + 1));

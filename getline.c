@@ -47,7 +47,7 @@ char **get_cmd(data_list *list_t, char *buff, size_t num)
 	char **idx_arr= NULL;
 
 	/** Get the input command **/
-	n = _getline(&buff, &n, stdin);
+	n = _getline(&buff, &num, stdin);
 	if (n == -1)/* if the function failed */
 	{
 		free(buff);
@@ -117,7 +117,7 @@ int _set(data_list *list_t)
 			j++;
 		}
 		/* Each if checking index is 0 */
-		if (num = 0)
+		if (num == 0)
 		{
 			nevn[k] = modify_env(list_t);
 			k++, chk = 1;

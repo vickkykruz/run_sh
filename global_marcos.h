@@ -11,14 +11,6 @@ typedef long long_number;
 #define NEW_LINE '\n'
 #define DELIME_LIST " \t\n\a\r"
 extern string *environ;
-/**
- *  *
- *  */
-typedef struct buitin
-{
-	string cmd;
-	integer (*fun)(data_list *ptr);
-} builtin_fun;
 
 /***/
 typedef struct path
@@ -54,6 +46,14 @@ typedef struct data_into
 	ssize_t len;
 } data_list;
 
+
+/**/
+typedef struct buitin
+{
+	char * cmd;
+	int (*fun)(data_list *);
+} builtin_fun;
+
 #define PLACEHOLDRS \
 	{ NULL, NULL, 0, NULL, 0, NULL, NULL, NULL }
 
@@ -62,8 +62,8 @@ typedef struct data_into
 #define BUITIN_FUNC {\
 	{"cd", _cd},\
 	{"env", _env},\
-	{"setenv", _setenv},\
-	{"unsetenv", _unsetenv},\
+	{"setenv", _set},\
+	{"unsetenv", _unset},\
 	{"exit", sh_exit},\
 	{"alias", _alias},\
 	{NULL, NULL}\

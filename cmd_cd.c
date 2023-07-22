@@ -3,28 +3,28 @@
 int cmd_cd_err(data_list *list_t, int num)
 {
 	/** Identicate the error value gotting from cmd_cd */
-	if (n == 2)
+	if (num == 2)
 	{
 		write(STDERR_FILENO, list_t->arv[0], _strlen(list_t->arv[0]));
 		write(STDERR_FILENO, ": Usage: setenv variable value\n", 31);
 		return (1);
 	}
 
-	if (n == 3)
+	if (num == 3)
 	{
 		write(STDERR_FILENO, list_t->arv[0], _strlen(list_t->arv[0]));
 		write(STDERR_FILENO, ": Usage: unsetenv variable value", 33);
 		return (1);
 	}
 
-	if (n == 4)
+	if (num == 4)
 	{
 		write(STDOUT_FILENO, list_t->arry[1], _strlen(list_t->arry[1]));
 		write(STDOUT_FILENO, ": Oldpwd is not set\n", 17);
 		return (0);
 	}
 
-	if (n == 1)
+	if (num == 1)
 	{
 		write(STDERR_FILENO, list_t->arv[0], _strlen(list_t->arv[0]));
 		write(STDERR_FILENO, ": ", 2);
@@ -68,7 +68,7 @@ int _cd(data_list *list_t)
 			return (2);
 		}
 	}
-	if (n == 1)
+	if (j == 1)
 	{
 		write(STDOUT_FILENO, list_t->arry[1], _strlen(list_t->arry[1]));
 		write(STDOUT_FILENO, "\n", 1);

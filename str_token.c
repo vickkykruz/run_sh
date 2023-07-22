@@ -2,8 +2,9 @@
 /***/
 void solo_sh(data_list *list_t)
 {
-	list_t->intact = 0;
 	char *path;
+
+	list_t->intact = 0;
 
 	for (; ;)
 	{
@@ -39,4 +40,25 @@ void solo_sh(data_list *list_t)
 		free_arr_ptr(list_t->arry);
 		free(path);
 	}
+}
+/**/
+int arry_len(int num)
+{
+	int len = 1;
+	unsigned int n;
+
+	if (num < 0)
+	{
+		len++;
+		n = num * -1;
+	}
+	else
+		n = num;
+
+	while (n > 9)
+	{
+		len++;
+		n = n / 10;
+	}
+	return (len);
 }

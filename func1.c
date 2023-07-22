@@ -37,11 +37,11 @@ char *_strdup(char *str)
 	size_t len;
 	char *ptr;
 
-	len _strlen(str);
+	len = _strlen(str);
 	ptr = malloc(sizeof(char) * (len + 1));
 	if (ptr == NULL)
 		return (NULL);
-	_memchy(ptr, str, len + 1);
+	_memcpy(ptr, str, len + 1);
 	return (ptr);
 }
 /**
@@ -52,7 +52,7 @@ char *_itoa(int num)
 	int len;
 	unsigned int n;
 
-	len = _get_len(n);
+	len = arry_len(num);
 	buff = malloc(sizeof(char) * (len + 1));
 	if (buff == 0)
 		return (NULL);

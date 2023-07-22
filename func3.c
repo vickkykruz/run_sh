@@ -1,6 +1,6 @@
 #include "shell.h"
 /***/
-void *_realloc(void *ptr, unsigned int 0_size, unsigned int n_size)
+void *_realloc(void *ptr, unsigned int o_size, unsigned int n_size)
 {
 	/*** initizaled the variables **/
 	char *new_node;

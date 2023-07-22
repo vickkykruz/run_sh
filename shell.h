@@ -62,7 +62,7 @@ char *find_path(path_list *, char *);
 integer remove_comments(char **);
 
 /** EXPAND.C FILE **/
-void expand_variable(data_list);
+void expand_variable(data_list *);
 
 /*** CMD_CD.C FILE **/
 integer cmd_cd_err(data_list *, int);
@@ -71,7 +71,7 @@ void modify_directory(data_list *, char *, char *);
 
 /** STR_TOKEN.C FULE **/
 void solo_sh(data_list *);
-int _get_len(int);
+int arry_len(int);
 
 /** FREE.C FILE **/
 void free_alias(alias_list *);

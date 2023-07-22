@@ -3,13 +3,13 @@
 int remove_comments(char **str)
 {
 	char *tmp = NULL, ptr = 'c';
-	char *buff = _strdup(str);
+	char *buff = _strdup(*str);
 	int i, j = 0, n = 0;
 
 	/* We want to free eqch index char in the buffer **/
 	for (; buff[n] != '\0'; n++)
 	{
-		if (n == 0 && biff[n] == '#')
+		if (n == 0 && buff[n] == '#')
 		{
 			free(buff);
 			return (0);

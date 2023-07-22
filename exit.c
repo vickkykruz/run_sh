@@ -1,6 +1,6 @@
 #include "shell.h"
 /***/
-int _exit(data_list *list_t)
+int sh_exit(data_list *list_t)
 {
 	int statusCode;
 
@@ -24,7 +24,7 @@ int _exit(data_list *list_t)
 	if (list_t->arry && list_t->intact == 1)
 		free_arr_ptr(list_t->arry);
 	if (list_t->arg_line)
-		free(arg_line);
+		free(list_t->arg_line);
 
 	exit(statusCode);
 }
